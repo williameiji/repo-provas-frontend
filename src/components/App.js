@@ -6,6 +6,7 @@ import GlobalStyle from "../assets/css/GlobalStyle";
 import UserContext from "../components/context/UserContext";
 import Login from "../components/login/Login";
 import Signup from "./signup/Signup";
+import MainScreen from "./mainScreen/MainScreen";
 
 export default function App() {
 	const [userInformation, setUserInformation] = useState(null);
@@ -19,6 +20,7 @@ export default function App() {
 					<Routes>
 						<Route path="/" element={<Login />} />
 						<Route path="/signup" element={<Signup />} />
+						<Route path="/main" element={<MainScreen />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>
