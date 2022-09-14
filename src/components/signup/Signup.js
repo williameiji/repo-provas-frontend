@@ -2,15 +2,15 @@ import styled from "styled-components";
 import { Button } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
-import AuthScreen from "../AuthScreen/AuthScreen";
+import AuthScreen from "../authScreen/AuthScreen";
 import theme from "../../assets/css/theme";
-import FormsLogin from "./FormsLogin";
+import FormsSignup from "./FormsSignup";
 
-export default function Login() {
+export default function Signup() {
 	return (
 		<AuthScreen>
 			<Box>
-				<Title>Login</Title>
+				<Title>Cadastro</Title>
 				<ThemeProvider theme={theme}>
 					<Button variant="contained" color="primary">
 						Entrar com o GITHUB
@@ -21,7 +21,7 @@ export default function Login() {
 					<p>ou</p>
 					<div></div>
 				</Bars>
-				<FormsLogin />
+				<FormsSignup />
 			</Box>
 		</AuthScreen>
 	);

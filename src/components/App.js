@@ -4,7 +4,8 @@ import { useState } from "react";
 import GlobalResetStyle from "../assets/css/GlobalResetStyle";
 import GlobalStyle from "../assets/css/GlobalStyle";
 import UserContext from "../components/context/UserContext";
-import Login from "../components/Login/Login";
+import Login from "../components/login/Login";
+import Signup from "./signup/Signup";
 
 export default function App() {
 	const [userInformation, setUserInformation] = useState(null);
@@ -17,6 +18,7 @@ export default function App() {
 				<BrowserRouter>
 					<Routes>
 						<Route path="/" element={<Login />} />
+						<Route path="/signup" element={<Signup />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>
