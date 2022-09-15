@@ -11,9 +11,15 @@ import urls from "../shared/urls";
 
 export default function RenderDiscipline() {
 	const [disciplineData, setDisciplineData] = useState(null);
-	const { userInformation } = useContext(UserContext);
+	const { userInformation, setChangeColorAndPlaceholder } =
+		useContext(UserContext);
 
 	useEffect(() => {
+		setChangeColorAndPlaceholder({
+			buttonDiscipline: true,
+			placeholder: "Pesquise por disciplina",
+		});
+
 		const config = {
 			headers: {
 				Authorization: `Bearer ${userInformation.data}`,
@@ -36,7 +42,7 @@ export default function RenderDiscipline() {
 			{!disciplineData ? (
 				"aguarde..."
 			) : (
-				<Box>
+				<>
 					{disciplineData.data.map((period, index) => (
 						<Accordion key={index}>
 							<AccordionSummary
@@ -61,17 +67,17 @@ export default function RenderDiscipline() {
 											</Typography>
 										</AccordionSummary>
 										<AccordionDetails>
-											{!discipline.category[0].projects.length &&
-											!discipline.category[0].practices.length &&
-											!discipline.category[0].recuperation.length ? (
+											{!discipline.category.projects.length &&
+											!discipline.category.practices.length &&
+											!discipline.category.recuperation.length ? (
 												"Não tem nenhuma prova para essa categoria."
 											) : (
 												<>
-													{!discipline.category[0].projects.length ? null : (
+													{!discipline.category.projects.length ? null : (
 														<BoxText>
 															<TitleCategory>Projetos</TitleCategory>
 
-															{discipline.category[0].projects.map(
+															{discipline.category.projects.map(
 																(project, index) => (
 																	<Tests key={index}>
 																		data - {project.name} ({project.teacher})
@@ -80,11 +86,11 @@ export default function RenderDiscipline() {
 															)}
 														</BoxText>
 													)}
-													{!discipline.category[0].practices.length ? null : (
+													{!discipline.category.practices.length ? null : (
 														<BoxText>
 															<TitleCategory>Práticas</TitleCategory>
 
-															{discipline.category[0].practices.map(
+															{discipline.category.practices.map(
 																(pract, index) => (
 																	<Tests key={index}>
 																		data - {pract.name} ({pract.teacher})
@@ -93,12 +99,11 @@ export default function RenderDiscipline() {
 															)}
 														</BoxText>
 													)}
-													{!discipline.category[0].recuperation
-														.length ? null : (
+													{!discipline.category.recuperation.length ? null : (
 														<BoxText>
 															<TitleCategory>Recuperação</TitleCategory>
 
-															{discipline.category[0].recuperation.map(
+															{discipline.category.recuperation.map(
 																(recup, index) => (
 																	<Tests key={index}>
 																		data - {recup.name} ({recup.teacher})
@@ -115,32 +120,11 @@ export default function RenderDiscipline() {
 							</AccordionDetails>
 						</Accordion>
 					))}
-					<Accordion>
-						<AccordionSummary
-							expandIcon={<ExpandMoreIcon />}
-							aria-controls="panel1a-content"
-							id="panel1a-header"
-						>
-							<Typography>Accordion 1</Typography>
-						</AccordionSummary>
-						<AccordionDetails>
-							<Typography>
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-								Suspendisse malesuada lacus ex, sit amet blandit leo lobortis
-								eget.
-							</Typography>
-						</AccordionDetails>
-					</Accordion>
-				</Box>
+				</>
 			)}
 		</MainScreen>
 	);
 }
-
-const Box = styled.div`
-	max-width: 50%;
-	margin: 350px auto 0 auto;
-`;
 
 const BoxText = styled.div`
 	display: flex;

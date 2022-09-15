@@ -29,7 +29,7 @@ export default function FormsLogin() {
 			const token = await axios.post(urls.login, loginDataInput);
 			setUserInformation(token);
 			setLoading(false);
-			navigate("/main");
+			navigate("/discipline");
 		} catch (error) {
 			console.log(error);
 			setLoading(false);
