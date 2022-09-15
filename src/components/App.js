@@ -6,8 +6,9 @@ import GlobalStyle from "../assets/css/GlobalStyle";
 import UserContext from "../components/context/UserContext";
 import Login from "../components/login/Login";
 import Signup from "./signup/Signup";
-import DisciplinePage from "./DisciplinePage/DisciplinePage";
-import TeacherPage from "./TeacherPage/TeacherPage";
+import DisciplinePage from "./disciplinePage/DisciplinePage";
+import TeacherPage from "./teacherPage/TeacherPage";
+import NewTestPage from "./newTest/NewTestsPage";
 
 export default function App() {
 	const [userInformation, setUserInformation] = useState(null);
@@ -34,6 +35,7 @@ export default function App() {
 						<Route path="/signup" element={<Signup />} />
 						<Route path="/discipline" element={<DisciplinePage />} />
 						<Route path="/teacher" element={<TeacherPage />} />
+						<Route path="/newtest" element={<NewTestPage />} />
 					</Routes>
 				</BrowserRouter>
 			</UserContext.Provider>

@@ -16,9 +16,9 @@ export default function ButtonBar() {
 		navigate("/teacher");
 	}
 
-	// function goToAddPage() {
-	// 	setChangeColorAndPlaceholder({ buttonAdd: true, placeholder: "Envie uma prova..." });
-	// }
+	function goToNewTestPage() {
+		navigate("/newtest");
+	}
 
 	return (
 		<Box>
@@ -47,7 +47,10 @@ export default function ButtonBar() {
 				>
 					PESSOA INSTRUTORA
 				</ButtonTeacher>
-				<ButtonAdd cor={changeColorAndPlaceholder?.buttonAdd}>
+				<ButtonAdd
+					cor={changeColorAndPlaceholder?.buttonAdd}
+					onClick={goToNewTestPage}
+				>
 					ADICIONAR
 				</ButtonAdd>
 			</BoxButtons>
