@@ -9,14 +9,27 @@ import logo from "../../assets/images/logo-repoprovas.png";
 export default function Header() {
 	const [buttons, setButtons] = useState({
 		buttonDiscipline: true,
-		buttonTeacher: false,
-		buttonAdd: false,
 	});
 	const [placeholderInput, setPlaceholderInput] = useState(
 		"Pesquise por disciplina"
 	);
 
 	const navigate = useNavigate();
+
+	function goToDisciplinePage() {
+		setButtons({ buttonDiscipline: true });
+		setPlaceholderInput("Pesquise por disciplina");
+	}
+
+	function goToTeacherPage() {
+		setButtons({ buttonTeacher: true });
+		setPlaceholderInput("Pesquise por pessoa instrutora");
+	}
+
+	function goToAddPage() {
+		setButtons({ buttonAdd: true });
+		setPlaceholderInput("Envie uma prova...");
+	}
 
 	function logout() {
 		navigate("/");
@@ -37,18 +50,24 @@ export default function Header() {
 					variant="outlined"
 					size="small"
 					sx={{ width: "30%" }}
+					disabled={buttons.buttonAdd}
 				/>
 
 				<Bar></Bar>
 
 				<BoxButtons>
-					<ButtonDiscipline cor={buttons.buttonDiscipline}>
+					<ButtonDiscipline
+						cor={buttons?.buttonDiscipline}
+						onClick={goToDisciplinePage}
+					>
 						DISCIPLINAS
 					</ButtonDiscipline>
-					<ButtonTeacher cor={buttons.buttonTeacher}>
+					<ButtonTeacher cor={buttons?.buttonTeacher} onClick={goToTeacherPage}>
 						PESSOA INSTRUTORA
 					</ButtonTeacher>
-					<ButtonAdd cor={buttons.buttonAdd}>ADICIONAR</ButtonAdd>
+					<ButtonAdd cor={buttons?.buttonAdd} onClick={goToAddPage}>
+						ADICIONAR
+					</ButtonAdd>
 				</BoxButtons>
 			</BoxInput>
 		</Box>
@@ -60,6 +79,8 @@ const Box = styled.div`
 	top: 0;
 	left: 0;
 	width: 100%;
+	z-index: 1;
+	background-color: #fafafa;
 `;
 
 const BoxLogo = styled.div`
@@ -86,6 +107,7 @@ const BoxInput = styled.div`
 	justify-content: center;
 	width: 100%;
 	height: 100%;
+	margin-bottom: 20px;
 `;
 
 const Bar = styled.div`
