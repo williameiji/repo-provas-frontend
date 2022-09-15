@@ -11,7 +11,9 @@ import TeacherPage from "./teacherPage/TeacherPage";
 import NewTestPage from "./newTest/NewTestsPage";
 
 export default function App() {
-	const [userInformation, setUserInformation] = useState(null);
+	const [userInformation, setUserInformation] = useState({
+		token: localStorage?.getItem("token"),
+	});
 	const [changeColorAndPlaceholder, setChangeColorAndPlaceholder] = useState({
 		buttonDiscipline: true,
 		placeholder: "Pesquise por disciplina",

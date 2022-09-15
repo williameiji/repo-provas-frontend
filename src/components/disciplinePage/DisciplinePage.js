@@ -8,6 +8,7 @@ import RenderDiscipline from "./RenderDisciplines";
 import MainScreen from "../mainScreen/MainScreen";
 import UserContext from "../context/UserContext";
 import urls from "../shared/urls";
+import config from "../shared/config";
 
 export default function DisciplinePage() {
 	const [disciplineData, setDisciplineData] = useState(null);
@@ -20,15 +21,9 @@ export default function DisciplinePage() {
 			placeholder: "Pesquise por disciplina",
 		});
 
-		const config = {
-			headers: {
-				Authorization: `Bearer ${userInformation.data}`,
-			},
-		};
-
 		async function getDisciplineData() {
 			try {
-				const data = await axios.get(urls.disciplines, config);
+				const data = await axios.get(urls.disciplines, config(userInformation));
 				setDisciplineData(data);
 			} catch (error) {
 				console.log(error);

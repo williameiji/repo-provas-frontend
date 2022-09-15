@@ -5,11 +5,12 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 import urls from "../shared/urls";
+import config from "../shared/config";
 
 export default function DisciplinesInput({
 	testDataInput,
 	setTestDataInput,
-	config,
+	userInformation,
 	setGetTeacher,
 }) {
 	const [open, setOpen] = useState(false);
@@ -30,7 +31,10 @@ export default function DisciplinesInput({
 
 		(async () => {
 			try {
-				const { data: disciplines } = await axios.get(urls.discipline, config);
+				const { data: disciplines } = await axios.get(
+					urls.discipline,
+					config(userInformation)
+				);
 				if (active) {
 					setOptions(disciplines);
 				}

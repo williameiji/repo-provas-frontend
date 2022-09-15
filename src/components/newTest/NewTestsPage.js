@@ -11,6 +11,7 @@ import CategoryInput from "./CategoryInput";
 import MainScreen from "../mainScreen/MainScreen";
 import DisciplinesInput from "./DisciplinesInput";
 import TeacherInput from "./TeacherInput";
+import config from "../shared/config";
 
 export default function NewTestPage() {
 	const [testDataInput, setTestDataInput] = useState({
@@ -27,12 +28,6 @@ export default function NewTestPage() {
 		useContext(UserContext);
 
 	const navigate = useNavigate();
-
-	const config = {
-		headers: {
-			Authorization: `Bearer ${userInformation.data}`,
-		},
-	};
 
 	function handleFormChange(e) {
 		let loginData = { ...testDataInput };
@@ -52,7 +47,7 @@ export default function NewTestPage() {
 
 		(async () => {
 			try {
-				await axios.post(urls.tests, testDataInput, config);
+				await axios.post(urls.tests, testDataInput, config(userInformation));
 
 				setLoading(false);
 
@@ -88,18 +83,18 @@ export default function NewTestPage() {
 				<CategoryInput
 					setTestDataInput={setTestDataInput}
 					testDataInput={testDataInput}
-					config={config}
+					userInformation={userInformation}
 				/>
 				<DisciplinesInput
 					setTestDataInput={setTestDataInput}
 					testDataInput={testDataInput}
-					config={config}
+					userInformation={userInformation}
 					setGetTeacher={setGetTeacher}
 				/>
 				<TeacherInput
 					setTestDataInput={setTestDataInput}
 					testDataInput={testDataInput}
-					config={config}
+					userInformation={userInformation}
 					getTeacher={getTeacher}
 				/>
 				<LoadingButton

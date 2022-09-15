@@ -26,8 +26,11 @@ export default function FormsLogin() {
 	async function login() {
 		setLoading(true);
 		try {
-			const token = await axios.post(urls.login, loginDataInput);
-			setUserInformation(token);
+			const { data } = await axios.post(urls.login, loginDataInput);
+
+			localStorage.setItem("token", data);
+
+			setUserInformation({ token: data });
 			setLoading(false);
 			navigate("/discipline");
 		} catch (error) {

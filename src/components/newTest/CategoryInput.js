@@ -5,11 +5,12 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 import urls from "../shared/urls";
+import config from "../shared/config";
 
 export default function CategoryInput({
 	testDataInput,
 	setTestDataInput,
-	config,
+	userInformation,
 }) {
 	const [open, setOpen] = useState(false);
 	const [options, setOptions] = useState([]);
@@ -24,7 +25,10 @@ export default function CategoryInput({
 
 		(async () => {
 			try {
-				const { data: categories } = await axios.get(urls.category, config);
+				const { data: categories } = await axios.get(
+					urls.category,
+					config(userInformation)
+				);
 				if (active) {
 					setOptions(categories);
 				}

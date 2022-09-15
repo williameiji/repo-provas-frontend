@@ -5,11 +5,12 @@ import TextField from "@mui/material/TextField";
 import axios from "axios";
 
 import urls from "../shared/urls";
+import config from "../shared/config";
 
 export default function TeacherInput({
 	testDataInput,
 	setTestDataInput,
-	config,
+	userInformation,
 	getTeacher,
 }) {
 	const [open, setOpen] = useState(false);
@@ -25,7 +26,7 @@ export default function TeacherInput({
 				try {
 					const teacher = await axios.get(
 						`${urls.teacher}/${getTeacher}`,
-						config
+						config(userInformation)
 					);
 
 					setOptions(teacher.data);

@@ -21,6 +21,7 @@ export default function RenderRecuperations({ discipline }) {
 const BoxText = styled.div`
 	display: flex;
 	flex-direction: column;
+	margin-top: 10px;
 `;
 
 const TitleCategory = styled.p`

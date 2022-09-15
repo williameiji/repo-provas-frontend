@@ -8,6 +8,7 @@ import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RenderCategories from "./RenderCategories";
+import config from "../shared/config";
 
 export default function TeacherPage() {
 	const [teacherData, setTeacherData] = useState(null);
@@ -20,14 +21,9 @@ export default function TeacherPage() {
 			placeholder: "Pesquise por pessoa instrutora",
 		});
 
-		const config = {
-			headers: {
-				Authorization: `Bearer ${userInformation.data}`,
-			},
-		};
 		async function getDisciplineData() {
 			try {
-				const data = await axios.get(urls.teachers, config);
+				const data = await axios.get(urls.teachers, config(userInformation));
 				setTeacherData(data);
 			} catch (error) {
 				console.log(error);
