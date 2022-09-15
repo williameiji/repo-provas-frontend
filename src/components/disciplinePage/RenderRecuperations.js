@@ -9,7 +9,7 @@ export default function RenderRecuperations({ discipline }) {
 
 					{discipline.category.recuperation.map((recup, index) => (
 						<Tests key={index}>
-							data - {recup.name} ({recup.teacher})
+							{recup.createdAt.slice(0, 4)} - {recup.name} ({recup.teacher})
 						</Tests>
 					))}
 				</BoxText>

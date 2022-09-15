@@ -9,7 +9,7 @@ export default function RenderPractices({ teacher }) {
 
 					{teacher.categories.practices.map((pract, index) => (
 						<Tests key={index}>
-							data - {pract.name} ({pract.discipline})
+							{pract.createdAt.slice(0, 4)} - {pract.name} ({pract.discipline})
 						</Tests>
 					))}
 				</BoxText>

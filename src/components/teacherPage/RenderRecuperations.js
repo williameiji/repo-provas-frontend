@@ -9,7 +9,7 @@ export default function RenderRecuperations({ teacher }) {
 
 					{teacher.categories.recuperation.map((recup, index) => (
 						<Tests key={index}>
-							data - {recup.name} ({recup.discipline})
+							{recup.createdAt.slice(0, 4)} - {recup.name} ({recup.discipline})
 						</Tests>
 					))}
 				</BoxText>

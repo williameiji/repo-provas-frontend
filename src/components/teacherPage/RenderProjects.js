@@ -9,7 +9,8 @@ export default function RenderProjects({ teacher }) {
 
 					{teacher.categories.projects.map((project, index) => (
 						<Tests key={index}>
-							data - {project.name} ({project.discipline})
+							{project.createdAt.slice(0, 4)} - {project.name} (
+							{project.discipline})
 						</Tests>
 					))}
 				</BoxText>
