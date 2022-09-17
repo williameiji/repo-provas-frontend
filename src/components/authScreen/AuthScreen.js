@@ -68,7 +68,7 @@ export default function AuthScreen(props) {
 						color="primary"
 						loading={loading}
 						onClick={login}
-						href={`https://github.com/login/oauth/authorize?scope=user&client_id=0678458fa213dd4e3f51&redirect_uri=http://localhost:3000/`}
+						href={`https://github.com/login/oauth/authorize?scope=user&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}`}
 					>
 						Entrar com o GITHUB
 					</LoadingButton>
