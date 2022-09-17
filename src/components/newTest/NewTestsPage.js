@@ -11,9 +11,11 @@ import CategoryInput from "./CategoryInput";
 import MainScreen from "../mainScreen/MainScreen";
 import DisciplinesInput from "./DisciplinesInput";
 import TeacherInput from "./TeacherInput";
+import { supabase } from "../shared/openPdf";
 import config from "../shared/config";
 
 export default function NewTestPage() {
+	const [pdf, setPdf] = useState(null);
 	const [testDataInput, setTestDataInput] = useState({
 		name: "",
 		pdfUrl: "",
@@ -21,6 +23,7 @@ export default function NewTestPage() {
 		discipline: "",
 		teacher: "",
 	});
+
 	const [getTeacher, setGetTeacher] = useState(null);
 	const [loading, setLoading] = useState(false);
 
@@ -35,6 +38,11 @@ export default function NewTestPage() {
 		setTestDataInput(loginData);
 	}
 
+	async function handleFile(e) {
+		handleFormChange(e);
+		setPdf(e.target.files[0]);
+	}
+
 	useEffect(() => {
 		setChangeColorAndPlaceholder({
 			buttonAdd: true,
@@ -42,16 +50,29 @@ export default function NewTestPage() {
 		});
 	}, []);
 
-	function sendNewtest() {
+	function sendNewtest(e) {
+		e.preventDefault();
 		setLoading(true);
 
 		(async () => {
 			try {
-				await axios.post(urls.tests, testDataInput, config(userInformation));
+				if (pdf.name.slice(-4) === ".pdf") {
+					const { data } = await supabase.storage
+						.from("repoprovas")
+						.upload(`/public/${Date.now()}_${pdf.name}`, pdf);
 
-				setLoading(false);
+					await axios.post(
+						urls.tests,
+						{ ...testDataInput, pdfUrl: data.Key },
+						config(userInformation)
+					);
 
-				navigate("/discipline");
+					setLoading(false);
+
+					navigate("/discipline");
+				} else {
+					alert("O arquivo precisa ter a extensão .pdf");
+				}
 			} catch (error) {
 				console.log(error);
 			}
@@ -62,55 +83,59 @@ export default function NewTestPage() {
 		<MainScreen>
 			<Box>
 				<Title>Adiciona uma prova</Title>
-				<TextField
-					id="outlined-basic"
-					name="name"
-					value={testDataInput.name}
-					label="Nome da prova"
-					onChange={handleFormChange}
-					variant="outlined"
-					sx={{ mb: 1, width: "100%" }}
-				/>
-				<TextField
-					id="outlined-basic"
-					name="pdfUrl"
-					value={testDataInput.pdfUrl}
-					label="Link da prova"
-					onChange={handleFormChange}
-					variant="outlined"
-					sx={{ mb: 1, width: "100%" }}
-				/>
-				<CategoryInput
-					setTestDataInput={setTestDataInput}
-					testDataInput={testDataInput}
-					userInformation={userInformation}
-				/>
-				<DisciplinesInput
-					setTestDataInput={setTestDataInput}
-					testDataInput={testDataInput}
-					userInformation={userInformation}
-					setGetTeacher={setGetTeacher}
-				/>
-				<TeacherInput
-					setTestDataInput={setTestDataInput}
-					testDataInput={testDataInput}
-					userInformation={userInformation}
-					getTeacher={getTeacher}
-				/>
-				<LoadingButton
-					size="medium"
-					onClick={sendNewtest}
-					loading={loading}
-					loadingIndicator="Loading…"
-					variant="outlined"
-					sx={{
-						backgroundColor: "#1976d2",
-						color: "white",
-						width: "100%",
-					}}
-				>
-					ENVIAR
-				</LoadingButton>
+				<form onSubmit={sendNewtest}>
+					<TextField
+						id="outlined-basic"
+						name="name"
+						value={testDataInput.name}
+						label="Nome da prova"
+						onChange={handleFormChange}
+						variant="outlined"
+						sx={{ mb: 1, width: "100%" }}
+					/>
+					<TextField
+						focused
+						id="outlined-required"
+						name="pdfUrl"
+						type="file"
+						value={testDataInput.pdfUrl}
+						label="Link da prova"
+						onChange={handleFile}
+						variant="outlined"
+						sx={{ mb: 1, width: "100%" }}
+					/>
+					<CategoryInput
+						setTestDataInput={setTestDataInput}
+						testDataInput={testDataInput}
+						userInformation={userInformation}
+					/>
+					<DisciplinesInput
+						setTestDataInput={setTestDataInput}
+						testDataInput={testDataInput}
+						userInformation={userInformation}
+						setGetTeacher={setGetTeacher}
+					/>
+					<TeacherInput
+						setTestDataInput={setTestDataInput}
+						testDataInput={testDataInput}
+						userInformation={userInformation}
+						getTeacher={getTeacher}
+					/>
+					<LoadingButton
+						size="medium"
+						type="submit"
+						loading={loading}
+						loadingIndicator="Loading…"
+						variant="outlined"
+						sx={{
+							backgroundColor: "#1976d2",
+							color: "white",
+							width: "100%",
+						}}
+					>
+						ENVIAR
+					</LoadingButton>
+				</form>
 			</Box>
 		</MainScreen>
 	);

@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { openUrl } from "../shared/openPdf";
 
 export default function RenderProjects({ teacher }) {
 	return (
@@ -8,7 +9,7 @@ export default function RenderProjects({ teacher }) {
 					<TitleCategory>Projetos</TitleCategory>
 
 					{teacher.categories.projects.map((project, index) => (
-						<Tests key={index}>
+						<Tests key={index} onClick={() => openUrl(project.pdfUrl)}>
 							{project.createdAt.slice(0, 4)} - {project.name} (
 							{project.discipline})
 						</Tests>
@@ -29,6 +30,10 @@ const TitleCategory = styled.p`
 `;
 
 const Tests = styled.p`
-	margin-top: 8px;
+	margin-top: 12px;
 	color: #878787;
+	cursor: pointer;
+	:hover {
+		color: blue;
+	}
 `;

@@ -1,4 +1,10 @@
-const BASE_URL = "https://repo-provas-dmq7.onrender.com";
+let BASE_URL;
+
+if (process.env.REACT_APP_MODE === "DEV") {
+	BASE_URL = "http://localhost:5000";
+} else {
+	BASE_URL = "https://repo-provas-dmq7.onrender.com";
+}
 
 const urls = {
 	login: `${BASE_URL}/login`,

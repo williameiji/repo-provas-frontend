@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { openUrl } from "../shared/openPdf";
 
 export default function RenderPractices({ discipline }) {
 	return (
@@ -8,7 +9,7 @@ export default function RenderPractices({ discipline }) {
 					<TitleCategory>Práticas</TitleCategory>
 
 					{discipline.category.practices.map((pract, index) => (
-						<Tests key={index}>
+						<Tests key={index} onClick={() => openUrl(pract.pdfUrl)}>
 							{pract.createdAt.slice(0, 4)} - {pract.name} ({pract.teacher})
 						</Tests>
 					))}
@@ -29,6 +30,10 @@ const TitleCategory = styled.p`
 `;
 
 const Tests = styled.p`
-	margin-top: 8px;
+	margin-top: 12px;
 	color: #878787;
+	cursor: pointer;
+	:hover {
+		color: blue;
+	}
 `;

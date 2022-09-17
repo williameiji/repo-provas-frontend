@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { openUrl } from "../shared/openPdf";
 
 export default function RenderRecuperations({ discipline }) {
 	return (
@@ -8,7 +9,7 @@ export default function RenderRecuperations({ discipline }) {
 					<TitleCategory>Recuperação</TitleCategory>
 
 					{discipline.category.recuperation.map((recup, index) => (
-						<Tests key={index}>
+						<Tests key={index} onClick={() => openUrl(recup.pdfUrl)}>
 							{recup.createdAt.slice(0, 4)} - {recup.name} ({recup.teacher})
 						</Tests>
 					))}
@@ -29,6 +30,10 @@ const TitleCategory = styled.p`
 `;
 
 const Tests = styled.p`
-	margin-top: 8px;
+	margin-top: 12px;
 	color: #878787;
+	cursor: pointer;
+	:hover {
+		color: blue;
+	}
 `;
