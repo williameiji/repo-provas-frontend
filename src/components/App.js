@@ -19,6 +19,7 @@ export default function App() {
 		placeholder: "Pesquise por disciplina",
 	});
 	const [pageTitle, setPageTitle] = useState("Login");
+	const [loading, setLoading] = useState(false);
 
 	return (
 		<>
@@ -31,6 +32,8 @@ export default function App() {
 					setChangeColorAndPlaceholder,
 					changeColorAndPlaceholder,
 					pageTitle,
+					setLoading,
+					loading,
 				}}
 			>
 				<BrowserRouter>
@@ -38,7 +41,12 @@ export default function App() {
 						<Route
 							path="/"
 							element={
-								<FormsLogin pageTitle={pageTitle} setPageTitle={setPageTitle} />
+								<FormsLogin
+									pageTitle={pageTitle}
+									setPageTitle={setPageTitle}
+									setLoading={setLoading}
+									loading={loading}
+								/>
 							}
 						/>
 						<Route
@@ -47,6 +55,8 @@ export default function App() {
 								<FormsSignup
 									pageTitle={pageTitle}
 									setPageTitle={setPageTitle}
+									setLoading={setLoading}
+									loading={loading}
 								/>
 							}
 						/>

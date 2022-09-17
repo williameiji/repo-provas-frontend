@@ -14,9 +14,9 @@ import { useState } from "react";
 
 export default function AuthScreen(props) {
 	const navigate = useNavigate();
-	const { setUserInformation, pageTitle } = useContext(UserContext);
+	const { setUserInformation, pageTitle, setLoading, loading } =
+		useContext(UserContext);
 	const [gitLogin, setGitLogin] = useState(null);
-	const [loading, setLoading] = useState(false);
 
 	useEffect(() => {
 		const url = window.location.href;
