@@ -9,6 +9,7 @@ import MainScreen from "../mainScreen/MainScreen";
 import UserContext from "../context/UserContext";
 import urls from "../shared/urls";
 import config from "../shared/config";
+import Loading from "../shared/Loading";
 
 export default function DisciplinePage() {
 	const [disciplineData, setDisciplineData] = useState(null);
@@ -35,7 +36,7 @@ export default function DisciplinePage() {
 	return (
 		<MainScreen>
 			{!disciplineData ? (
-				"aguarde..."
+				<Loading />
 			) : (
 				<>
 					{disciplineData.data.map((period, index) => (

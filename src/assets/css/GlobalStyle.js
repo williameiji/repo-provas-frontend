@@ -27,6 +27,12 @@ const GlobalStyle = createGlobalStyle`
     ::-webkit-scrollbar-thumb:hover {
         background: #555; 
     }
+
+    @keyframes spin {
+        to {
+            transform: rotate(360deg);
+        }
+    }
     
 `;
 

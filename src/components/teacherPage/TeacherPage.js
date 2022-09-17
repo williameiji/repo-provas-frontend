@@ -9,6 +9,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import RenderCategories from "./RenderCategories";
 import config from "../shared/config";
+import Loading from "../shared/Loading";
 
 export default function TeacherPage() {
 	const [teacherData, setTeacherData] = useState(null);
@@ -34,22 +35,24 @@ export default function TeacherPage() {
 
 	return (
 		<MainScreen>
-			{!teacherData
-				? "aguarde..."
-				: teacherData.data.map((teacher, index) => (
-						<Accordion key={index}>
-							<AccordionSummary
-								expandIcon={<ExpandMoreIcon />}
-								aria-controls="panel1a-content"
-								id="panel1a-header"
-							>
-								<Typography fontWeight={700}>{teacher.teacher}</Typography>
-							</AccordionSummary>
-							<AccordionDetails>
-								<RenderCategories teacher={teacher} />
-							</AccordionDetails>
-						</Accordion>
-				  ))}
+			{!teacherData ? (
+				<Loading />
+			) : (
+				teacherData.data.map((teacher, index) => (
+					<Accordion key={index}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+						>
+							<Typography fontWeight={700}>{teacher.teacher}</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<RenderCategories teacher={teacher} />
+						</AccordionDetails>
+					</Accordion>
+				))
+			)}
 		</MainScreen>
 	);
 }
