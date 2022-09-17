@@ -9,6 +9,7 @@ const urls = {
 	discipline: `${BASE_URL}/disciplines`,
 	teacher: `${BASE_URL}/teachers`,
 	tests: `${BASE_URL}/tests`,
+	git: `${BASE_URL}/auth`,
 };
 
 export default urls;

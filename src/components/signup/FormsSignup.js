@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LoadingButton } from "@mui/lab";
 import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
@@ -7,14 +7,20 @@ import axios from "axios";
 
 import urls from "../shared/urls";
 
-export default function FormsSignup() {
+import AuthScreen from "../authScreen/AuthScreen";
+
+export default function FormsSignup({ loading, setLoading, setPageTitle }) {
 	const [signupDataInput, setSignupDataInput] = useState({
 		email: "",
 		password: "",
 		refPassword: "",
 	});
-	const [loading, setLoading] = useState(false);
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		setPageTitle("Cadastro");
+	}, []);
 
 	function handleFormChange(e) {
 		let loginData = { ...signupDataInput };
@@ -39,7 +45,7 @@ export default function FormsSignup() {
 	}
 
 	return (
-		<>
+		<AuthScreen>
 			<TextField
 				label="Email"
 				variant="outlined"
@@ -72,7 +78,7 @@ export default function FormsSignup() {
 					CADASTRAR
 				</LoadingButton>
 			</ButtonBox>
-		</>
+		</AuthScreen>
 	);
 }
 

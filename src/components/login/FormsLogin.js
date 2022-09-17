@@ -5,15 +5,22 @@ import { TextField } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+import AuthScreen from "../authScreen/AuthScreen";
+
 import urls from "../shared/urls";
 import UserContext from "../context/UserContext";
+import { useEffect } from "react";
 
-export default function FormsLogin() {
+export default function FormsLogin({ loading, setLoading, setPageTitle }) {
 	const [loginDataInput, setLoginDataInput] = useState({
 		email: "",
 		password: "",
 	});
-	const [loading, setLoading] = useState(false);
+
+	useEffect(() => {
+		setPageTitle("Login");
+	}, []);
+
 	const navigate = useNavigate();
 	const { setUserInformation } = useContext(UserContext);
 
@@ -44,7 +51,7 @@ export default function FormsLogin() {
 	}
 
 	return (
-		<>
+		<AuthScreen>
 			<TextField
 				label="Email"
 				variant="outlined"
@@ -68,7 +75,7 @@ export default function FormsLogin() {
 					ENTRAR
 				</LoadingButton>
 			</ButtonBox>
-		</>
+		</AuthScreen>
 	);
 }
 
