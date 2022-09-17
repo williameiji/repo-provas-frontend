@@ -99,7 +99,7 @@ export default function NewTestPage() {
 						name="pdfUrl"
 						type="file"
 						value={testDataInput.pdfUrl}
-						label="Link da prova"
+						label="Arquivo pdf da prova"
 						onChange={handleFile}
 						variant="outlined"
 						sx={{ mb: 1, width: "100%" }}
