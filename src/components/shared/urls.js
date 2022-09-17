@@ -1,4 +1,4 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://repo-provas-dmq7.onrender.com";
 
 const urls = {
 	login: `${BASE_URL}/login`,
