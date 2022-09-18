@@ -46,6 +46,7 @@ export default function TeacherInput({
 	return (
 		<>
 			<Autocomplete
+				data-cy="teachers"
 				id="asynchronous-demo"
 				disabled={blockInput}
 				sx={{ mb: 1, width: "100%" }}

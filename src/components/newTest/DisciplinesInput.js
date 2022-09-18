@@ -57,6 +57,7 @@ export default function DisciplinesInput({
 	return (
 		<>
 			<Autocomplete
+				data-cy="disciplines"
 				id="asynchronous-demo"
 				sx={{ mb: 1, width: "100%" }}
 				onChange={(event, value) => handleChange(value)}

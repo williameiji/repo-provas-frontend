@@ -38,18 +38,21 @@ export default function ButtonBar() {
 				<ButtonDiscipline
 					cor={changeColorAndPlaceholder?.buttonDiscipline}
 					onClick={goToDisciplinePage}
+					data-cy="discipline"
 				>
 					DISCIPLINAS
 				</ButtonDiscipline>
 				<ButtonTeacher
 					cor={changeColorAndPlaceholder?.buttonTeacher}
 					onClick={goToTeacherPage}
+					data-cy="teacher"
 				>
 					PESSOA INSTRUTORA
 				</ButtonTeacher>
 				<ButtonAdd
 					cor={changeColorAndPlaceholder?.buttonAdd}
 					onClick={goToNewTestPage}
+					data-cy="test"
 				>
 					ADICIONAR
 				</ButtonAdd>

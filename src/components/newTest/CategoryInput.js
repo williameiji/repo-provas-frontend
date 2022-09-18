@@ -51,6 +51,7 @@ export default function CategoryInput({
 	return (
 		<>
 			<Autocomplete
+				data-cy="categories"
 				id="asynchronous-demo"
 				sx={{ mb: 1, width: "100%" }}
 				onChange={(event, value) =>

@@ -101,6 +101,7 @@ export default function NewTestPage() {
 						onChange={handleFormChange}
 						variant="outlined"
 						sx={{ mb: 1, width: "100%" }}
+						data-cy="name"
 					/>
 					<TextField
 						focused
@@ -112,6 +113,7 @@ export default function NewTestPage() {
 						onChange={handleFile}
 						variant="outlined"
 						sx={{ mb: 1, width: "100%" }}
+						data-cy="file"
 					/>
 					<CategoryInput
 						setTestDataInput={setTestDataInput}
@@ -131,6 +133,7 @@ export default function NewTestPage() {
 						getTeacher={getTeacher}
 					/>
 					<LoadingButton
+						data-cy="submit"
 						size="medium"
 						type="submit"
 						loading={loading}
