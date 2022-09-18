@@ -19,6 +19,8 @@ export default function AuthScreen(props) {
 	const [gitLogin, setGitLogin] = useState(null);
 
 	useEffect(() => {
+		localStorage.clear();
+		setUserInformation({ token: "" });
 		const url = window.location.href;
 		const hasCode = url.includes("?code=");
 

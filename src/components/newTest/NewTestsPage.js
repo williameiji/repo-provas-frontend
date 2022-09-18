@@ -48,6 +48,11 @@ export default function NewTestPage() {
 			buttonAdd: true,
 			placeholder: "Adicione uma prova...",
 		});
+
+		if (!userInformation.token) {
+			alert("Token inexistente/inválido, entre novamente!");
+			navigate("/");
+		}
 	}, []);
 
 	function sendNewtest(e) {
@@ -74,6 +79,10 @@ export default function NewTestPage() {
 					alert("O arquivo precisa ter a extensão .pdf");
 				}
 			} catch (error) {
+				if (error.response.status === 401) {
+					alert("Token inexistente/inválido, entre novamente!");
+					navigate("/");
+				}
 				console.log(error);
 			}
 		})();

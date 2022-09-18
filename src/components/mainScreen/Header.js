@@ -8,6 +8,7 @@ export default function Header() {
 	const navigate = useNavigate();
 
 	function logout() {
+		localStorage.clear();
 		navigate("/");
 	}
 
