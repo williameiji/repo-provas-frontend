@@ -53,6 +53,7 @@ export default function FormsSignup({ loading, setLoading, setPageTitle }) {
 				value={signupDataInput.email}
 				onChange={handleFormChange}
 				sx={{ mb: 1 }}
+				data-cy="email"
 			/>
 			<TextField
 				label="Senha"
@@ -62,6 +63,7 @@ export default function FormsSignup({ loading, setLoading, setPageTitle }) {
 				onChange={handleFormChange}
 				value={signupDataInput.password}
 				sx={{ mb: 1 }}
+				data-cy="password"
 			/>
 			<TextField
 				label="Confirme sua senha"
@@ -71,10 +73,16 @@ export default function FormsSignup({ loading, setLoading, setPageTitle }) {
 				onChange={handleFormChange}
 				value={signupDataInput.refPassword}
 				sx={{ mb: 1 }}
+				data-cy="refPassword"
 			/>
 			<ButtonBox>
 				<ClickBack onClick={goToLogin}>Já possuo cadastro</ClickBack>
-				<LoadingButton variant="contained" onClick={signup} loading={loading}>
+				<LoadingButton
+					variant="contained"
+					onClick={signup}
+					loading={loading}
+					data-cy="submit"
+				>
 					CADASTRAR
 				</LoadingButton>
 			</ButtonBox>

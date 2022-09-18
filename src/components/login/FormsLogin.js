@@ -59,6 +59,7 @@ export default function FormsLogin({ loading, setLoading, setPageTitle }) {
 				value={loginDataInput.email}
 				onChange={handleFormChange}
 				sx={{ mb: 1 }}
+				data-cy="email"
 			/>
 			<TextField
 				label="Senha"
@@ -68,10 +69,18 @@ export default function FormsLogin({ loading, setLoading, setPageTitle }) {
 				onChange={handleFormChange}
 				value={loginDataInput.password}
 				sx={{ mb: 1 }}
+				data-cy="password"
 			/>
 			<ButtonBox>
-				<ClickBack onClick={goToSignup}>Não possuo cadastro</ClickBack>
-				<LoadingButton variant="contained" onClick={login} loading={loading}>
+				<ClickBack onClick={goToSignup} data-cy="signup">
+					Não possuo cadastro
+				</ClickBack>
+				<LoadingButton
+					variant="contained"
+					onClick={login}
+					loading={loading}
+					data-cy="submit"
+				>
 					ENTRAR
 				</LoadingButton>
 			</ButtonBox>
