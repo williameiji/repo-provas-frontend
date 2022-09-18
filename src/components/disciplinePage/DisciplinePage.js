@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { Accordion, AccordionSummary, AccordionDetails } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { useNavigate } from "react-router-dom";
 
 import RenderDiscipline from "./RenderDisciplines";
 import MainScreen from "../mainScreen/MainScreen";
@@ -15,6 +16,7 @@ export default function DisciplinePage() {
 	const [disciplineData, setDisciplineData] = useState(null);
 	const { userInformation, setChangeColorAndPlaceholder } =
 		useContext(UserContext);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		setChangeColorAndPlaceholder({
@@ -27,6 +29,10 @@ export default function DisciplinePage() {
 				const data = await axios.get(urls.disciplines, config(userInformation));
 				setDisciplineData(data);
 			} catch (error) {
+				if (error.response.status === 401) {
+					alert("Token inexistente/inválido, entre novamente!");
+					navigate("/");
+				}
 				console.log(error);
 			}
 		}
