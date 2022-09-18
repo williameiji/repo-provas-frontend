@@ -14,7 +14,7 @@ import Loading from "../shared/Loading";
 
 export default function TeacherPage() {
 	const [teacherData, setTeacherData] = useState(null);
-	const { userInformation, setChangeColorAndPlaceholder } =
+	const { userInformation, setChangeColorAndPlaceholder, teacherFilteredData } =
 		useContext(UserContext);
 	const navigate = useNavigate();
 
@@ -43,6 +43,21 @@ export default function TeacherPage() {
 		<MainScreen>
 			{!teacherData ? (
 				<Loading />
+			) : teacherFilteredData ? (
+				teacherFilteredData.map((teacher, index) => (
+					<Accordion key={index}>
+						<AccordionSummary
+							expandIcon={<ExpandMoreIcon />}
+							aria-controls="panel1a-content"
+							id="panel1a-header"
+						>
+							<Typography fontWeight={700}>{teacher.teacher}</Typography>
+						</AccordionSummary>
+						<AccordionDetails>
+							<RenderCategories teacher={teacher} />
+						</AccordionDetails>
+					</Accordion>
+				))
 			) : (
 				teacherData.data.map((teacher, index) => (
 					<Accordion key={index}>

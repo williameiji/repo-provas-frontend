@@ -21,6 +21,11 @@ export default function App() {
 	const [pageTitle, setPageTitle] = useState("Login");
 	const [loading, setLoading] = useState(false);
 
+	//teste
+	const [teacherFilteredData, setTeacherFilteredData] = useState(null);
+	const [disciplineFilteredData, setDisciplineFilteredData] = useState(null);
+	//teste
+
 	return (
 		<>
 			<GlobalResetStyle />
@@ -34,6 +39,10 @@ export default function App() {
 					pageTitle,
 					setLoading,
 					loading,
+					teacherFilteredData,
+					setTeacherFilteredData,
+					disciplineFilteredData,
+					setDisciplineFilteredData,
 				}}
 			>
 				<BrowserRouter>

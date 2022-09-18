@@ -1,11 +1,20 @@
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { TextField } from "@mui/material";
+import axios from "axios";
+
+import urls from "../shared/urls";
 import UserContext from "../context/UserContext";
+import config from "../shared/config";
 
 export default function ButtonBar() {
-	const { changeColorAndPlaceholder } = useContext(UserContext);
+	const {
+		changeColorAndPlaceholder,
+		userInformation,
+		setTeacherFilteredData,
+		setDisciplineFilteredData,
+	} = useContext(UserContext);
 	const navigate = useNavigate();
 
 	function goToDisciplinePage() {
@@ -20,6 +29,50 @@ export default function ButtonBar() {
 		navigate("/newtest");
 	}
 
+	async function searchUser(str) {
+		const MIN = 3;
+
+		if (str.length >= MIN) {
+			const strNoSpaces = str.replace(" ", "+");
+
+			if (
+				changeColorAndPlaceholder.placeholder ===
+				"Pesquise por pessoa instrutora"
+			) {
+				await axios
+					.get(
+						`${urls.teachers}?search=${strNoSpaces}`,
+						config(userInformation)
+					)
+					.then((response) => {
+						setTeacherFilteredData(response.data);
+					})
+					.catch((err) => {
+						console.log(err.response);
+					});
+			} else if (
+				changeColorAndPlaceholder.placeholder === "Pesquise por disciplina"
+			) {
+				await axios
+					.get(
+						`${urls.disciplines}?search=${strNoSpaces}`,
+						config(userInformation)
+					)
+					.then((response) => {
+						setDisciplineFilteredData(response.data);
+					})
+					.catch((err) => {
+						console.log(err.response);
+					});
+			}
+		}
+
+		if (str.length < 3) {
+			setTeacherFilteredData(null);
+			setDisciplineFilteredData(null);
+		}
+	}
+
 	return (
 		<Box>
 			<BoxInput>
@@ -30,6 +83,7 @@ export default function ButtonBar() {
 					size="small"
 					sx={{ width: "30%" }}
 					disabled={changeColorAndPlaceholder.buttonAdd}
+					onChange={(e) => searchUser(e.target.value)}
 				/>
 
 				<Bar></Bar>
