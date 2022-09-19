@@ -1,7 +1,8 @@
 # <p align = "center"> RepoProvas Frontend </p>
 
 <div align="center">
-<img src="https://user-images.githubusercontent.com/86417618/191019898-f7281697-f0ce-44e9-b05e-f0f4b389f231.gif"></div>
+<img src="https://user-images.githubusercontent.com/86417618/191023529-3f1b069b-dcd3-476a-b606-1292bbc7bfa5.gif"></div>
+
 
 
 ##  :clipboard: Description
