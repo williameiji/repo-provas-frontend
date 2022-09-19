@@ -128,7 +128,7 @@ const Box = styled.div`
 	width: 100%;
 	z-index: 1;
 	background-color: #fafafa;
-	margin-top: 167px;
+	margin-top: 160px;
 `;
 
 const Bar = styled.div`
@@ -150,8 +150,9 @@ const BoxInput = styled.div`
 
 const BoxButtons = styled.div`
 	display: flex;
+	width: 100%;
 	align-items: center;
-	justify-content: center;
+	justify-content: space-around;
 	margin-bottom: 20px;
 `;
 
@@ -164,7 +165,6 @@ const ButtonDiscipline = styled.div`
 	font-weight: 500;
 	color: ${(props) => (props.cor ? "white" : "#1976d2")};
 	border-radius: 3px;
-	margin: 0 50px;
 	font-size: 14px;
 	background-color: ${(props) => (props.cor ? "#1976d2" : "")};
 	cursor: pointer;
@@ -179,7 +179,6 @@ const ButtonTeacher = styled.div`
 	font-weight: 500;
 	color: ${(props) => (props.cor ? "white" : "#1976d2")};
 	border-radius: 3px;
-	margin: 0 50px;
 	font-size: 14px;
 	background-color: ${(props) => (props.cor ? "#1976d2" : "")};
 	cursor: pointer;
@@ -194,7 +193,6 @@ const ButtonAdd = styled.div`
 	font-weight: 500;
 	color: ${(props) => (props.cor ? "white" : "#1976d2")};
 	border-radius: 3px;
-	margin: 0 50px;
 	font-size: 14px;
 	background-color: ${(props) => (props.cor ? "#1976d2" : "")};
 	cursor: pointer;
