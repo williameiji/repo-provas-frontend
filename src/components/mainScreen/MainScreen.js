@@ -15,5 +15,5 @@ export default function MainScreen(props) {
 
 const Box = styled.div`
 	max-width: 50%;
-	margin: 350px auto 0 auto;
+	margin: 350px auto 40px auto;
 `;
