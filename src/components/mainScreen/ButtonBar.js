@@ -18,14 +18,20 @@ export default function ButtonBar() {
 	const navigate = useNavigate();
 
 	function goToDisciplinePage() {
+		setTeacherFilteredData(null);
+		setDisciplineFilteredData(null);
 		navigate("/discipline");
 	}
 
 	function goToTeacherPage() {
+		setTeacherFilteredData(null);
+		setDisciplineFilteredData(null);
 		navigate("/teacher");
 	}
 
 	function goToNewTestPage() {
+		setTeacherFilteredData(null);
+		setDisciplineFilteredData(null);
 		navigate("/newtest");
 	}
 
