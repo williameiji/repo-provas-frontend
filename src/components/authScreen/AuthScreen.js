@@ -41,6 +41,8 @@ export default function AuthScreen(props) {
 
 					setUserInformation({ token: data });
 
+					setLoading(false);
+
 					navigate("/discipline");
 				} catch (error) {
 					alert(error.response.data);
